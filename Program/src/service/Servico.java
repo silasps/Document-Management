@@ -8,14 +8,14 @@ import java.util.Scanner;
 
 public class Servico {
 
-    public void cadastrarDocumentoService(Colaborador usuario, Colaborador responsavel){
+    public void cadastrarDocumentoService(Colaborador usuario){
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Insira o link do documento");
         String linkDocumento = scan.nextLine();
 
-        Documento documento = new Documento(usuario.getIdentificador(), responsavel.getIdentificador(), linkDocumento, "Ativo", usuario.getCargo());
-        usuario.cadastrarDocumento(documento);
+        Documento documento = new Documento(usuario.getIdentificador(), usuario.getIdentificador(), linkDocumento, "Ativo", usuario.getCargo());
+//        usuario.cadastrarDocumento(documento);
         System.out.println("Documento criado");
         System.out.println(documento+"\n");
     }
@@ -24,25 +24,29 @@ public class Servico {
         usuario.listarDocumentos(usuario);
     }
 
-    public void tramitarDocumento(Colaborador usuario){
+    public void tramitarDocumentoService(Colaborador usuario){
         Scanner scan = new Scanner(System.in);
         System.out.println("**** Segue Lista dos Documentos em sua responsabilidade ****");
         DocumentsList.listar(usuario);
         System.out.println("\nDigite o ID do documento a ser tramitado:");
         Integer idDoc = scan.nextInt();
-        System.out.println("O que você deseja fazer?");
 
+        //Trâmite de Funcionário
         if(usuario.getCargo() == "Funcionário"){
-            Scanner scan1 = new Scanner(System.in);
-            System.out.println("1. Encaminhar para o Gestor");
-            Integer option = scan1.nextInt();
             DocumentsList.tramitar(usuario, idDoc, 0);
-        } else if (usuario.getCargo() == "Gestor") {
+
+        //Trâmite de Supervisor
+        } else if (usuario.getCargo() == "Supervisor") {
+            System.out.println("O que você deseja fazer?");
             Scanner scan1 = new Scanner(System.in);
             System.out.println("1. Aprovar\n2. Reprovar");
             Integer option = scan1.nextInt();
             DocumentsList.tramitar(usuario, idDoc, option);
-        } else {
+        }
+
+        //Trâmite de Gerente
+        else {
+            System.out.println("O que você deseja fazer?");
             Scanner scan1 = new Scanner(System.in);
             System.out.println("1. Arquivar\n2. Desarquivar");
             Integer option = scan1.nextInt();

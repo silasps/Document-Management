@@ -1,6 +1,7 @@
 package domain;
 
 import domain.documento.Documento;
+import repository.DocumentsList;
 import repository.ListaSupervisor;
 
 import java.time.LocalDate;
@@ -27,7 +28,7 @@ public class Supervisor extends Colaborador {
 
     @Override
     public void cadastrarDocumento(Documento documento) {
-        documentosPendentesSup.add(documento);
+        DocumentsList.adicionar(documento);
     }
 
 

@@ -1,5 +1,6 @@
 package repository;
 
+import domain.Colaborador;
 import domain.Pessoa;
 
 import java.util.ArrayList;
@@ -18,5 +19,10 @@ public class ListaPessoa {
 
     public static List<Pessoa> retornarTodos(){
         return  pessoas;
+    }
+
+    public static void listarPessoas(){
+        pessoas.forEach(pessoa ->{System.out.println(pessoa);
+        });
     }
 }

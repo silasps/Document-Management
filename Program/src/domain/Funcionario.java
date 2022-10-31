@@ -49,7 +49,7 @@ public class Funcionario extends Colaborador {
 
     @Override
     public void cadastrarDocumento(Documento documento) {
-        documentosFuncionario.add(documento);
+        DocumentsList.adicionar(documento);
     }
 
     @Override
